@@ -196,4 +196,44 @@ const peek2 = queue => {
   console.log(queue.first);
 };
 
-peek2(starTrekQ);
+// peek2(starTrekQ);
+
+const isEmpty2 = queue => {
+  if (queue.first === null) {
+    return true;
+  }
+  return false;
+};
+
+// console.log(isEmpty2(starTrekQ));
+
+const displayQueue = queue => {
+  let currNode = queue.first;
+  while (queue.next !== null) {
+    console.log(currNode);
+    currNode = currNode.next;
+  }
+};
+
+// displayQueue(starTrekQ);
+
+// Queue Implementation using a stack
+let stack1 = new Stack();
+let stack2 = new Stack();
+let Que = new Queue();
+
+Que.enqueue(stack1);
+Que.enqueue(stack2);
+
+// Square dance pairing
+
+let maleQueue = new Queue();
+let femQueue = new Queue();
+
+const sorter = person => {
+  if (person === "Jane" || person === "Madonna" || person === "Beyonce") {
+    femQueue.push(person);
+  } else {
+    maleQueue.push(person);
+  }
+};
