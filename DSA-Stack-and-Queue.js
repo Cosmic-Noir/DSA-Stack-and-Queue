@@ -237,3 +237,15 @@ const sorter = person => {
     maleQueue.push(person);
   }
 };
+
+let count = 0;
+let bankQueue = new Queue();
+// Ophidian Bank
+const bank = bankQueue => {
+  if (count % 4 === 0) {
+    let noPapers = bankQueue.dequeue();
+    bankQueue.enqueue(noPapers);
+  } else {
+    bankQueue.dequeue();
+  }
+};
