@@ -42,7 +42,7 @@ const peek = stack => {
 // peek(starTrek);
 
 const isEmpty = stack => {
-  if (stack.top) {
+  if (stack.top !== null) {
     return true;
   } else {
     return false;
@@ -65,10 +65,17 @@ starTrek.pop();
 starTrek.pop();
 
 // Palindrome
-
+// How would you do as a stack...?
 function is_palindrome(s) {
   s = s.toLowerCase().replace(/[^a-zA-Z0-9]/g, "");
-  // Your code goes here
+  // // Your code goes here
+  // for (let i = 0; i < s.length / 2; i++) {
+  //   if (s[i] !== s.charAt(s.length - 1 - i)) {
+  //     return false;
+  //   } else {
+  //     return true;
+  //   }
+  // }
 }
 
 // True, true, true, false
@@ -76,3 +83,66 @@ function is_palindrome(s) {
 // console.log(is_palindrome("A man, a plan, a canal: Panama"));
 // console.log(is_palindrome("1001"));
 // console.log(is_palindrome("Tauhida"));
+
+// Check for balanced parantheses
+
+const matcher = expression => {
+  const myStack = new Stack();
+  for (let i = 0; i < expression.length; i++) {
+    console.log(expression[i]);
+
+    if (expression[i] === "(") {
+      myStack.push(expression[i]);
+      console.log(myStack.top);
+    } else if (
+      (expression[i] === ")" && myStack.top.data === "(") ||
+      (expression[i] === ")" && myStack.top === null)
+    ) {
+      myStack.pop();
+      // console.log("match");
+    }
+  }
+  if (myStack.top === null) {
+    return true;
+  } else {
+    console.log(myStack);
+    return false;
+  }
+};
+
+// console.log(matcher("((5+5)"));
+// console.log(matcher("(5+5)"));
+// console.log(matcher("((5+5)))"));
+
+// Short Stack
+
+const shortest = stack => {
+  // smallest items are on the top
+
+  let newStack = new Stack();
+  while (stack.top) {
+    let temp = stack.pop();
+    if (newStack.top === null) {
+      newStack.push(temp);
+    } else if (newStack.top.data < temp) {
+      let temp2 = newStack.pop();
+      newStack.push(temp);
+      newStack.push(temp2);
+    } else {
+      newStack.push(temp);
+    }
+  }
+
+  return newStack;
+};
+
+const testStack = new Stack();
+
+testStack.push(3);
+testStack.push(6);
+testStack.push(2);
+testStack.push(9);
+testStack.push(8);
+testStack.push(1);
+
+console.log(shortest(testStack));
