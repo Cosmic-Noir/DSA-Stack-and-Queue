@@ -145,4 +145,55 @@ testStack.push(9);
 testStack.push(8);
 testStack.push(1);
 
-console.log(shortest(testStack));
+// console.log(shortest(testStack));
+
+// Create a que using Singly Linked List
+
+class Queue {
+  constructor() {
+    this.first = null;
+    this.last = null;
+  }
+
+  // Add to end of que
+  enqueue(data) {
+    const node = new _Node(data);
+
+    if (this.first === null) {
+      this.first = node;
+    }
+
+    if (this.last) {
+      this.last.next = node;
+    }
+
+    this.last = node;
+  }
+
+  // remove from start of queue
+  dequeue() {
+    if (this.first === null) {
+      return;
+    }
+    const node = this.first;
+    this.first = this.first.next;
+
+    if (node === this.last) {
+      this.last = null;
+    }
+    return node.value;
+  }
+}
+const starTrekQ = new Queue();
+
+starTrekQ.enqueue("Kirk");
+starTrekQ.enqueue("Spock");
+starTrekQ.enqueue("Uhura");
+starTrekQ.enqueue("Sulu");
+starTrekQ.enqueue("Checkov");
+
+const peek2 = queue => {
+  console.log(queue.first);
+};
+
+peek2(starTrekQ);
